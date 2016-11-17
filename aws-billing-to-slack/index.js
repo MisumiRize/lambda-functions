@@ -4,7 +4,7 @@ var fetch = require('node-fetch');
 var moment = require('moment-timezone');
 
 var cloudWatch = new AWS.CloudWatch({region: 'us-east-1'});
-var yesterday = moment().tz('Asia/Tokyo').subtract(0, 'days');
+var yesterday = moment().tz('Asia/Tokyo').subtract(1, 'days');
 
 exports.handler = function(evt, ctx, cb) {
   co(function *() {
