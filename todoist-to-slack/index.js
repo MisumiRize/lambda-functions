@@ -1,6 +1,6 @@
 var co = require('co');
 var FormData = require('form-data');
-var moment = require('moment');
+var moment = require('moment-timezone');
 var fetch = require('node-fetch');
 
 var form = new FormData();
@@ -8,7 +8,7 @@ form.append('token', process.env.TODOIST_API_TOKEN);
 form.append('sync_token', '*');
 form.append('resource_types', '["items"]');
 
-var today = moment();
+var today = moment().tz('Asia/Tokyo');
 
 exports.handler = function(event, context, callback) {
   co(function *() {
