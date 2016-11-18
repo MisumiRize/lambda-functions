@@ -20,7 +20,7 @@ exports.handler = function(evt, ctx, cb) {
       Namespace: 'AWS/Billing',
       Period: 86400,
       StartTime: yesterday.startOf('day').unix(),
-      Statistics: ['Sum']
+      Statistics: ['Maximum']
     }).promise();
 
     if (res.Datapoints.length === 0) {
@@ -31,7 +31,7 @@ exports.handler = function(evt, ctx, cb) {
       username: 'aws-billing-bot',
       icon_emoji: ':aws:',
       text: '昨日までの AWS の利用料\n```EstimatedCharges: '
-        + res.Datapoints[0].Sum + ' USD```'
+        + res.Datapoints[0].Maximum + ' USD```'
     })});
   }).then(function() { cb(); })
     .catch(function(e) { cb(e); });
