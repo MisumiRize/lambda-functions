@@ -25,8 +25,9 @@ exports.handler = function(event, context, callback) {
     yield fetch(process.env.SLACK_WEBHOOK_URL, {method: 'post', body: JSON.stringify({
       username: 'todoist-bot',
       icon_emoji: ':todoist:',
-      text: 'There are ' + items.length + ' unfinished item(s) today at <Todoist>\n```'
-        + items.map(function(i) { return '*' + i.content; }).join('\n') + '\n```'
+      text: 'There are ' + items.length
+        + ' unfinished item(s) today at <https://ja.todoist.com/|Todoist>\n```'
+        + items.map(function(i) { return '* ' + i.content; }).join('\n') + '\n```'
     })});
   }).then(function() { callback(); })
     .catch(function(e) { callback(e); });
