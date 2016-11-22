@@ -22,7 +22,7 @@ exports.handler = function(event, context, callback) {
       return;
     }
   
-    yield fetch(process.env.SLACK_WEBHOOK_URL, {method: 'post', body: JSON.stringify({
+    return yield fetch(process.env.SLACK_WEBHOOK_URL, {method: 'post', body: JSON.stringify({
       username: 'todoist-bot',
       icon_emoji: ':todoist:',
       text: 'There are ' + items.length

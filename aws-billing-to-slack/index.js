@@ -27,7 +27,7 @@ exports.handler = function(evt, ctx, cb) {
       return;
     }
 
-    yield fetch(process.env.SLACK_WEBHOOK_URL, {method: 'post', body: JSON.stringify({
+    return yield fetch(process.env.SLACK_WEBHOOK_URL, {method: 'post', body: JSON.stringify({
       username: 'aws-billing-bot',
       icon_emoji: ':aws:',
       text: '昨日までの AWS の利用料\n```EstimatedCharges: '
