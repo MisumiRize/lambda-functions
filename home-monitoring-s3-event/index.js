@@ -6,7 +6,7 @@ var path = require('path');
 
 exports.handler = function(evt, ctx, cb) {
   co(function *() {
-    var region = evt.Records[0].awsRegion
+    var region = evt.Records[0].awsRegion;
     var srcBucket = evt.Records[0].s3.bucket.name;
     var dstBucket = srcBucket + '-archive';
     var srcKey = decodeURIComponent(evt.Records[0].s3.object.key.replace(/\+/g, ' '));
