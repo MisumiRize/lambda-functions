@@ -21,7 +21,8 @@ exports.handler = function(evt, ctx, cb) {
       Bucket: dstBucket,
       Key: dstKey,
       Body: obj.Body,
-      ContentType: obj.ContentType
+      ContentType: obj.ContentType,
+      StorageClass: 'STANDARD_IA'
     }).promise();
 
     return yield fetch(process.env.SLACK_WEBHOOK_URL, {method: 'post', body: JSON.stringify({
