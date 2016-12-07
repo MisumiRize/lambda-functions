@@ -3,6 +3,9 @@ var co = require('co');
 var moment = require('moment-timezone');
 var fetch = require('node-fetch');
 var path = require('path');
+var rollbar = require('rollbar');
+
+rollbar.init(process.env.ROLLBAR_TOKEN_LAMBDA_FUNCTIONS);
 
 exports.handler = function(evt, ctx, cb) {
   co(function *() {
@@ -31,5 +34,7 @@ exports.handler = function(evt, ctx, cb) {
       text: 'https://s3-' + region + '.amazonaws.com/' + srcBucket + '/' + srcKey
     })});
   }).then(function() { cb(); })
-    .catch(function(e) { cb(e); });
+    .catch(function(e) {
+      rollbar.handleError(e, null, function() { cb(e); });
+    });
 };

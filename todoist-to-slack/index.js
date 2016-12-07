@@ -2,6 +2,9 @@ var co = require('co');
 var FormData = require('form-data');
 var moment = require('moment-timezone');
 var fetch = require('node-fetch');
+var rollbar = require('rollbar');
+
+rollbar.init(process.env.ROLLBAR_TOKEN_LAMBDA_FUNCTIONS);
 
 var form = new FormData();
 form.append('token', process.env.TODOIST_API_TOKEN);
@@ -30,5 +33,7 @@ exports.handler = function(event, context, callback) {
         + items.map(function(i) { return '* ' + i.content; }).join('\n') + '\n```'
     })});
   }).then(function() { callback(); })
-    .catch(function(e) { callback(e); });
+    .catch(function(e) {
+      rollbar.handleError(e, null, function(e) { callback(e); });
+    });
 };

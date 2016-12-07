@@ -40,3 +40,5 @@ jspm_packages
 deploy.env
 event.json
 context.json
+
+.mayoiga.json

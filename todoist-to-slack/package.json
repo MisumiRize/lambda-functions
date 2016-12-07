@@ -1,13 +1,14 @@
 {
   "scripts": {
-    "exec": "node-lambda run -f deploy.env",
-    "deploy": "node-lambda deploy -f deploy.env",
+    "exec": "node-lambda run -f ../deploy.env",
+    "deploy": "node-lambda deploy -f ../deploy.env",
     "lint": "eslint index.js"
   },
   "dependencies": {
     "co": "^4.6.0",
     "form-data": "^2.1.2",
     "moment-timezone": "^0.5.9",
-    "node-fetch": "^1.6.3"
+    "node-fetch": "^1.6.3",
+    "rollbar": "^0.6.3"
   }
 }
